@@ -1,2 +1,2 @@
 # Binge-Anime-Player
-An .m3u8 player for Binge-Anime
+The web deployment of binge-anime-player
