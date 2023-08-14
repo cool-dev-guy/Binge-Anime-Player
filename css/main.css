@@ -1,0 +1,17 @@
+body{
+  margin:0px;
+  background:#111;
+}
+media-controller {
+    width: 100%;
+    height: auto;
+}
+media-volume-range{
+  display:none;
+}
+.mute:hover ~ .vol{
+  display:block;
+}
+.vol:hover{
+  display:block;
+}
