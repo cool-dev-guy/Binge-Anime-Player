@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DPlayer Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.css">
+</head>
+<body>
+    <div id="dplayer-container"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/dplayer@1.27.1/dist/DPlayer.min.js"></script>
+    <script>
+        const dp = new DPlayer({
+            container: document.getElementById('dplayer-container'),
+            video: {
+                url: "https://www002.anifastcdn.info/videos/hls/jLTa7QwaRO3wk48TmRjwhA/1692023365/184141/0789fd4f049c3ca2a49b860ea5d1f456/ep.1.1677591537.m3u8",
+                type: 'hls'
+            },
+            pluginOptions: {
+                hls: {
+                    // hls config
+                },
+            },
+        });
+    </script>
+</body>
+</html>
