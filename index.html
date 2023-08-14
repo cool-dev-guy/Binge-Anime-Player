@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Binge Anime Player</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Include the required scripts and stylesheets -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@1/+esm"></script>
+    <link rel="stylesheet" href="css/main.css"> 
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <media-controller>
+        <video id="video" width="100%" slot="media">
+        </video>
+        <media-control-bar>
+            <media-seek-backward-button></media-seek-backward-button>
+            <media-play-button></media-play-button>
+            <media-seek-forward-button></media-seek-forward-button>
+            <media-time-display></media-time-display>
+            <media-time-range></media-time-range>
+            <media-mute-button class="mute"></media-mute-button>
+            <media-volume-range class="vol"></media-volume-range>
+            <media-fullscreen-button></media-fullscreen-button>
+        </media-control-bar>
+    </media-controller>
+</body>
+</html>
