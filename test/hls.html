@@ -1,0 +1,31 @@
+<style>
+ body{
+  margin:0px;
+  overflow:hidden;
+}
+video{
+  width:100%;
+  max-height:100vh;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<!-- Or if you want the latest version from the main branch -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
+<video id="video"></video>
+<script>
+  var video = document.getElementById('video');
+  var videoSrc = "https://www002.anifastcdn.info/videos/hls/jLTa7QwaRO3wk48TmRjwhA/1692023365/184141/0789fd4f049c3ca2a49b860ea5d1f456/ep.1.1677591537.m3u8";
+  //
+  // First check for native browser HLS support
+  //
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = videoSrc;
+    //
+    // If no native HLS support, check if HLS.js is supported
+    //
+  } else if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(videoSrc);
+    hls.attachMedia(video);
+  }
+</script>
