@@ -1,15 +1,11 @@
         var binge_anime_player = null;
-
-        // Function to change the server
         function server_change(server){
             if (document.player){
                 document.player.server = server;
                 document.player.reloadAnimeFile();
             }
         }
-
-        
-
+        const video = document.getElementById('video');
         class PlayerManager {
             constructor(elem) {
                 this.elem = elem;
@@ -64,9 +60,5 @@
                 this.hls.attachMedia(this.elem);
             }
         }
-        function main(){
-          const video = document.getElementById('video');
-          const binge_anime_player = new PlayerManager(video);
-          document.player = binge_anime_player;
-        }
-        main()
+        binge_anime_player = new PlayerManager(video);
+        document.player = binge_anime_player;
