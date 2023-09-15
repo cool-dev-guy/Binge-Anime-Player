@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Binge Anime</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/defaults.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/community-skin/video.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.js"></script>
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body>
+    <header>
+        <nav>
+            <button onclick="openTab('app-home')">Home</button>
+            <button onclick="openTab('app-search')"><i class="fa-solid fa-magnifying-glass" style="color: #c9e962;"></i></button>
+            <button class="active" onclick="openTab('app-player')"><i class="fa-solid fa-tv" style="color: #c9e962;"> Player</i></button>
+        </nav>
+    </header>
+    <main>
+        <section class="tab" id="app-player">
+            <section class="app-player-widget">
+                <media-player
+                    aspect-ratio="16/9"
+                    src="https://www071.anifastcdn.info/videos/hls/KAWJ_AoY4Kxv9eXbFl1_cg/1694617774/184141/0789fd4f049c3ca2a49b860ea5d1f456/ep.1.1692389436.m3u8"
+                    poster="https://media-files.vidstack.io/poster.png"
+                >
+                    <media-outlet></media-outlet>
+                    <media-community-skin></media-community-skin>
+                </media-player>
+                <div class="app-player-widget-addons addons-controls">
+                    <span class="player-addons">Episode 298</span>
+                    <span class="player-addons"><i class="fa-solid fa-forward-step fa-rotate-180" style="color: #c9e962;"></i></span>
+                    <span class="player-addons"><i class="fa-solid fa-forward-step" style="color: #c9e962;"></i></span> 
+                    <span class="player-addons">+</span> 
+                </div>
+                <section class="app-player-details">
+                    Episode 223
+                </section>
+                servers:uhgoyo<br>
+                servers:uyfl;y8
+            </section>
+            <section class="app-player-other">
+                ccc
+            </section>
+        </section>
+        <section class="tab" id="app-search">
+            <div>
+                <input type="text" placeholder="Search" onkeydown="searchForQuery(event,this.value)"/>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </section>
+        <section class="default tab" id="app-home">
+            Home screen
+        </section>
+    </main>
+    <div class="desktop">Note that the app is not currently compatible with desktop views.</div>
+    <footer>
+        <section class="app-footer">
+            This website consumes an API.
+        </section>
+    </footer>
+    <script type="text/javascript">
+        const request = new XMLHttpRequest();
+        var search_result=document.getElementById("searchResults");
+        function searchForQuery(event, query) {
+            if (event.key == "Enter") {
+                console.log("searching for "+query);
+
+                request.open('GET', `https://api.consumet.org/anime/gogoanime/${query}?page=1`);
+                request.send();
+
+                request.onload = function() {
+                    if (request.status === 200) {
+                        try {
+                            const response = JSON.parse(request.responseText);
+                            let text = "";
+                            
+                            if (response['results']) {
+                                console.log("total "+response["results"].length+" results.")
+                                for (let i = 0; i < response.results.length; i++) {
+                                    text += JSON.stringify(response["results"][i]["title"]) + "<br>";
+                                }
+                                search_result.innerHTML = text;
+                            } else {
+                                search_result.innerHTML = "No results found.";
+                            }
+                        } catch (error) {
+                            search_result.innerHTML = "Error: Invalid JSON response.";
+                        }
+                    } else {
+                        search_result.innerHTML = "Error: Unable to fetch data.";
+                    }
+                };
+
+                request.onerror = function() {
+                    search_result.innerHTML = "Error: Request failed.";
+                };
+            }
+        }
+
+        function openTab(tabId) {
+            // Hide all tab contents
+            console.log("hi")
+            const tabContents = document.querySelectorAll('.tab');
+            tabContents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Show the selected tab content
+            document.getElementById(tabId).style.display = 'grid';
+        }
+    </script>
+</body>
+</html>
